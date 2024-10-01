@@ -3,9 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const ContactCard = ({id, contact}) => {
+const ContactCard = ({id, contact, navigation}) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity 
+            style={styles.container} 
+            onPress={() => navigation.navigate('Contact Detail', {
+                id: id
+            })}>
             <View>
                 <Text style={styles.name}>{contact.name}</Text>
                 <Text style={styles.phoneNumber}>No. HP: {contact.phoneNumber}</Text>
