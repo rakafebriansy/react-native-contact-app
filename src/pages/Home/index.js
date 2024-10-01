@@ -1,9 +1,9 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Alert } from 'react-native';
 import { database } from '../../config/firebase';
-import { ref, get } from 'firebase/database';
+import { ref, get, remove } from 'firebase/database';
 import { ContactCard } from '../../components';
 
 export default class Home extends Component {
@@ -40,6 +40,36 @@ export default class Home extends Component {
         }
     }
 
+    removeContact = async (id) => {
+        Alert.alert(
+            'Info',
+            'Anda yakin akan menghapus data kontak?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel'
+                },
+                {
+                    text: 'OK',
+                    onPress: () => {
+                        try {
+                            const contactRef = ref(database, `contact/${id}`);
+                            remove(contactRef);
+                            Alert.alert('Hapus', 'Kontak berhasil dihapus');
+                            this.fetchContacts();
+                        } catch (error) {
+                            console.log('Error while deleting contacts: ', error);
+                        }
+                    }
+                }
+            ],
+            {
+                cancelable: false
+            }
+        )
+    }
+
     componentDidMount() {
         this.fetchContacts();
     }
@@ -56,7 +86,12 @@ export default class Home extends Component {
                 <View style={styles.listOfContact}>
                     {contactsKey.length > 0 ? (
                         contactsKey.map((key) => (
-                            <ContactCard key={key} contact={contacts[key]} id={key} {...this.props} />
+                            <ContactCard 
+                                key={key} 
+                                contact={contacts[key]} 
+                                id={key} 
+                                {...this.props}
+                                removeContact={this.removeContact} />
                         ))
                     ) : (
                         <Text>Daftar kosong</Text>
