@@ -1,13 +1,22 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { 
+  FIREBASE_PROJECT_ID,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_API_KEY,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID
+ } from '@env';
 const firebaseConfig = {
-  apiKey: "AIzaSyBq6WyMqFRWVZRhG8kPeTyxcIGm4NK7nXM",
-  authDomain: "belajar-flutter-a532d.firebaseapp.com",
-  databaseURL: "https://belajar-flutter-a532d-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "belajar-flutter-a532d",
-  storageBucket: "belajar-flutter-a532d.appspot.com",
-  messagingSenderId: "1074928534830",
-  appId: "1:1074928534830:web:a7f1cf968dfbaf371a26bf"
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  databaseURL: FIREBASE_DATABASE_URL,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
