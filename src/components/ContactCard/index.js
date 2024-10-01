@@ -16,7 +16,11 @@ const ContactCard = ({id, contact, navigation, removeContact}) => {
                 <Text style={styles.phoneNumber}>No. HP: {contact.phoneNumber}</Text>
             </View>
             <View style={styles.icon}>
-                <FontAwesomeIcon icon={faEdit} color='orange' size={25} />
+                <TouchableOpacity onPress={() => navigation.navigate('Edit Contact', {
+                    id: id
+                    })}>
+                    <FontAwesomeIcon icon={faEdit} color='orange' size={25} />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => removeContact(id)}>
                     <FontAwesomeIcon icon={faTimes} color='red' size={25} />
                 </TouchableOpacity>
