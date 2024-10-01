@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
-const InputData = ({label, placeholder, keyboardType, isTextArea}) => {
+const InputData = ({label, placeholder, keyboardType, isTextArea, onChangeText, stateName, value}) => {
     if(isTextArea) {
         return (
           <>
             <Text style={styles.label}>{label}</Text>
-            <TextInput multiline={true} numberOfLines={4} placeholder={placeholder} style={styles.textInputArea} keyboardType={keyboardType} isTextArea={isTextArea}/>
+            <TextInput 
+              multiline={true} 
+              numberOfLines={4} 
+              placeholder={placeholder} 
+              style={styles.textInputArea} 
+              keyboardType={keyboardType} 
+              isTextArea={isTextArea}
+              value={value}
+              onChangeText={(text) => {
+                onChangeText(stateName, text);
+              }}
+            />
           </>
         );
     }
@@ -14,7 +25,16 @@ const InputData = ({label, placeholder, keyboardType, isTextArea}) => {
     return (
       <>
         <Text style={styles.label}>{label}</Text>
-        <TextInput placeholder={placeholder} style={styles.textInput} keyboardType={keyboardType} isTextArea={isTextArea}/>
+        <TextInput 
+          placeholder={placeholder} 
+          style={styles.textInput} 
+          keyboardType={keyboardType} 
+          isTextArea={isTextArea}
+          value={value}
+          onChangeText={(text) => {
+            onChangeText(stateName, text);
+          }}
+        />
       </>
     );
 }
