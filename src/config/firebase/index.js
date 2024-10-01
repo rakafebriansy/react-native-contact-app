@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyBq6WyMqFRWVZRhG8kPeTyxcIGm4NK7nXM",
   authDomain: "belajar-flutter-a532d.firebaseapp.com",
@@ -13,6 +13,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+export default app;
+
 export {
-  ref, database, set
+  database
 };

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { InputData } from '../../components';
-import { ref, database, set } from '../../config/firebase';
+import { database } from '../../config/firebase';
+import { ref, push } from 'firebase/database';
 
 export default class CreateContact extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class CreateContact extends Component {
         phoneNumber: this.state.phoneNumber,
         address: this.state.address,
       };
-      set(contactRef,contact)
+      push(contactRef,contact)
       .then((data) => {
         Alert.alert('Success', 'Kontak berhasil disimpan');
         this.props.navigation.replace('Home')
