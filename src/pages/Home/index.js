@@ -56,7 +56,7 @@ export default class Home extends Component {
                 <View style={styles.listOfContact}>
                     {contactsKey.length > 0 ? (
                         contactsKey.map((key) => (
-                            <ContactCard cardKey={key} contact={contacts[key]} id={key} />
+                            <ContactCard key={key} contact={contacts[key]} id={key} />
                         ))
                     ) : (
                         <Text>Daftar kosong</Text>

@@ -1,12 +1,53 @@
+import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const ContactCard = ({cardKey, contact}) => {
+const ContactCard = ({id, contact}) => {
     return (
-        <View>
-            <Text key={cardKey}>{contact.name}</Text>
-        </View>
+        <TouchableOpacity style={styles.container}>
+            <View>
+                <Text style={styles.name}>{contact.name}</Text>
+                <Text style={styles.phoneNumber}>No. HP: {contact.phoneNumber}</Text>
+            </View>
+            <View style={styles.icon}>
+                <FontAwesomeIcon icon={faEdit} color='orange' size={25} />
+                <FontAwesomeIcon icon={faTimes} color='red' size={25} />
+            </View>
+        </TouchableOpacity>
     );
 }
 
 export default ContactCard;
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        padding: 15,
+        backgroundColor: 'white',
+        borderRadius: 5,
+        marginBottom: 20,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+    },
+    name: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+    phoneNumber: {
+        fontSize: 12,
+        color: 'gray'
+    },
+    icon: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    }
+});
